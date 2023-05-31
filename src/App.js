@@ -1,113 +1,123 @@
-import React, { useState, useRef } from "react";
-import WeatherDisplay from "./WeatherDisplay";
-import { Row, Col } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import GlobalCities from "./Components/GlobalCities";
+import Search from "./Components/Search";
+import TimeLocation from "./Components/TimeLocation";
+import Temperature from "./Components/Temperature";
+import Forecast from "./Components/Forecast";
+import getWeatherData from "./Weather.js";
+import { isNightTime } from "./Utility.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-//Main function call App with React State variables defined underneath
 function App() {
-  const [city, setCity] = useState("");
+  const [query, setQuery] = useState(null);
+  const [units, setUnits] = useState("metric");
+  const [loading, setLoading] = useState(true);
+  const [localTimeAndDay, setLocalTimeAndDay] = useState(null);
+  const [localTime, setLocalTime] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
   const [forecastData, setForecastData] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const weatherAPI = process.env.REACT_APP_WEATHER_API_KEY;
-  const inputRef = useRef(null);
+  const [sunrise, setSunrise] = useState(null);
+  const [sunset, setSunset] = useState(null);
+  const [backgroundClass, setBackgroundClass] = useState(
+    "from-cyan-700 to-blue-700"
+  );
 
-  // This function fetches weather data from the API
-  const fetchData = async () => {
-    try {
-      setLoading(true); // Set the loading state to true
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        toast.info("Fetching weather for " + query.q);
+        const data = await getWeatherData(query, units);
 
-      const weatherResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherAPI}&units=metric`
-      );
-      const weatherData = await weatherResponse.json();
+        setLoading(true);
+        if (data.error) {
+          setErrorMessage(data.error);
+        } else {
+          setWeatherData(data.formattedData);
+          setLocalTimeAndDay(data.localTimeAndDay);
+          setLocalTime(data.localTime);
+          setForecastData(data.forecastData);
+          setSunrise(data.sunrise);
+          setSunset(data.sunset);
+          setErrorMessage(null);
 
-      if (weatherData.cod === "404") {
-        setWeatherData(null);
+          const tempThreshold = units === "metric" ? 25 : 77;
+
+          const currentTemp = data.formattedData.temp;
+          const tempBackgroundClass =
+            currentTemp <= tempThreshold
+              ? "from-cyan-700 to-blue-700"
+              : "from-yellow-700 to-orange-700";
+          setBackgroundClass(tempBackgroundClass);
+
+          const isNight = isNightTime(
+            data.localTime,
+            data.sunrise,
+            data.sunset
+          );
+          const backgroundClass = isNight
+            ? "from-gray-400 to-gray-800"
+            : tempBackgroundClass;
+          setBackgroundClass(backgroundClass);
+        }
+      } catch (error) {
+        setErrorMessage(error);
+        console.log("error", error);
+      } finally {
         setLoading(false);
-        setErrorMessage(
-          "Sorry, we could not find that place. Please try again."
-        );
-        return;
+        toast.success(`Successfully fetched weather for ` + query.q);
       }
+    };
 
-      setWeatherData(weatherData);
-
-      const forecastResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${weatherAPI}&units=metric`
-      );
-      const forecastData = await forecastResponse.json();
-
-      if (forecastData.cod === "404") {
-        setForecastData(null);
-        setLoading(false);
-        setErrorMessage(
-          "Sorry, we could not find the forecast for that place. Please try again."
-        );
-        return;
-      }
-
-      setForecastData(forecastData);
-      setLoading(false);
-      setErrorMessage(null);
-    } catch (error) {
-      console.log(error);
-      setWeatherData(null);
-      setForecastData(null);
-      setLoading(false);
-      setErrorMessage("Sorry, something went wrong. Please try again later.");
+    if (query) {
+      fetchData();
     }
-  };
+  }, [query, units]);
 
-  const handleInputKeyDown = async (event) => {
-    if (event.key === "Enter") {
-      const inputValue = inputRef.current.value.trim();
-      if (inputValue !== "") {
-        setCity(inputValue);
-        await fetchData(); // Call the fetchData function to fetch weather and forecast data
-      }
-    }
-  };
-
-  const handleCityChange = (e) => {
-    const input = e.target.value; // Get the value of the input without trimming
-
-    if (/^[a-zA-Z\s]+$/.test(input.trim())) {
-      // Check if the trimmed input only contains letters and spaces
-      setCity(input); // Set the city state to the input without trimming
-      setErrorMessage(null);
-    } else {
-      setCity("");
-      setWeatherData(null);
-      setErrorMessage("Please enter a valid city name");
-    }
-  };
-  // Define the dynamic text for the h6 element
-  const h6Text = loading ? "Loading..." : "...Where would you like to know the weather of?";
-  
-  // Main display - featuring JSX WeatherDisplay from child component
   return (
-    <div className="App text-center">
-      <Row>
-        <Col>
-          <h1>The Weatherman</h1>
-          <h6>{h6Text}</h6>
-        </Col>
-      </Row>
+    <div className=" flex justify-center">
+      <div
+        className={`max-w-screen-md w-full my-10 px-24 py-5 bg-gradient-to-br sm:bg-gradient-to-br md:bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${backgroundClass}`}
+      >
+        <GlobalCities setQuery={setQuery} />
+        <Search
+          setQuery={setQuery}
+          units={units}
+          setUnits={setUnits}
+          setWeatherData={setWeatherData}
+          loading={loading}
+        />
+        {weatherData && (
+          <>
+            <TimeLocation
+              formattedData={weatherData}
+              localTimeAndDay={localTimeAndDay}
+            />
+            <Temperature
+              formattedData={weatherData}
+              units={units}
+              sunrise={sunrise}
+              sunset={sunset}
+            />
+            <Forecast
+              title="Hourly Forecast"
+              forecastData={forecastData}
+              units={units}
+            />
+          </>
+        )}
+      </div>
 
-      <input
-        ref={inputRef}
-        className="userInput"
-        type="text"
-        value={city}
-        onChange={handleCityChange}
-        onKeyDown={handleInputKeyDown}
-      />
-      {weatherData && forecastData && (
-        <WeatherDisplay data={weatherData} forecastData={forecastData} />
+      <ToastContainer autoClose={2000} theme="colored" newestOnTop={true} />
+
+      {errorMessage && (
+        <div className="fixed top-0 left-0 right-0 bg-red-500 p-2 text-white text-sm text-center">
+          {errorMessage}
+        </div>
       )}
-      {errorMessage && <p id="errorMessage">{errorMessage}</p>}
     </div>
   );
 }
+
 export default App;

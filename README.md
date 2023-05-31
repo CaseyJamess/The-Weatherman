@@ -1,16 +1,52 @@
 # caseys-weatherman
 
+V2.0 31-5-2023!
+
+Updates:
+
+- Utilised a more component based design to really highlight understanding of React - see 'components' 
+
+- Removed React Bootstrap and redesigned with Tailwind CSS, for a streamlined way of building highly responsive apps/webpages - https://tailwindcss.com/ 
+
+- Incorporated a 'Global Cities' Component at the top of the page for imporant cities around the globe!
+
+- Included extra components feauturing icons from iconscout for more information about the weather - https://iconscout.com/unicons
+
+- Included NPM toasty to give the user visual feedback when a location was being loaded/displayed - https://www.npmjs.com/package/react-toastify
+
+- Using Luxon to display accurate location time - https://www.npmjs.com/package/luxon
+
+- Added a custom font with Google fonts - https://fonts.google.com/
+
+- Key architecture change, instead of manually computing metric -> imperial conversions, I am requesting a changed URL to OpenWeather that passes me the results 
+
+- Added a 'Utility.js' folder to call functions from, to improve readability and code structure 
+
+- A responsive background depending on the time/weather. For example if it is above 25 celsius/77 fahrenheit the background has an orange tint, or if it is at night time, the background goes dark... the default is blue.
+
+- An error message on the top of the screen to indicate any errors with the user's input, or if the API response has failed
+
+
+*****************
+
+- Note, some functionality is limited due to the free version of the OpenWeather API, and also makes it difficult to pass information around the react components - hence some code looking long winded 
+
+For example, I cannot get daily forecasts with V2.5 OpenWeather API's free weather call, nor can I input Lat/Lon inputs on current weather calls, meaning that I cannot get the users current location, for example
+
+If V3 is released it will include this functionality as well as having a drop down menu to suggest locations whilst you are typing an input - and being able to click & use the suggested area. 
+
+This allows the user for example to be able to specify locations that have the same name - i.e Manchester in Tennessee, USA vs the default which is Manchester in the UK
+
+Note - this will be if I decide to upgrade my subscription to a paid version or OpenWeather adds more functionality on their free API!
+
+**********************
+
 The Weatherman is an app to showcase the weather of any Town or City around the globe! Created using OpenWeather's API : https://openweathermap.org/api
 
 Feel free to add any functionality changes or styles of your own :) 
 
-You will need to create a .env file inside your directory and inside create  the REACT_APP_WEATHER_API_KEY & assign it the value of your own API Key
+You will need to create a .env file inside your directory and inside create : REACT_APP_WEATHER_API_KEY & assign it the value of your own API Key
 
-Included in this is react-bootstrap to allow for a simple, visualy appealing way to style the page using the bootstrap system
-
-Next version coming: having a drop down menu to suggest locations whilst you are typing an input - and being able to click & use the suggested area. 
-
-This allows the user for example to be able to specify locations that have the same name - i.e Manchester in Tennessee, USA vs the default which is Manchester in the UK
 
 Happy Coding! 
 
