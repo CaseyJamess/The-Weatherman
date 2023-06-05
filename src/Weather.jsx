@@ -2,9 +2,9 @@ import {
   formatLocalTime,
   formatSunTime,
   formatLocalTimeAndDay,
-} from "./Utility.js";
+} from "./Utility.jsx";
 
-const weatherAPI = process.env.REACT_APP_WEATHER_API_KEY;
+const weatherAPI = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 const urlConstruct = "https://api.openweathermap.org/data/2.5";
 
 // Unfortunately limited by open weather API for the functionality

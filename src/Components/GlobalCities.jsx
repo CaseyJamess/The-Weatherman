@@ -1,4 +1,4 @@
-import React from "react";
+
 
 const GlobalCities = ({ setQuery }) => {
   const cities = [
@@ -29,7 +29,7 @@ const GlobalCities = ({ setQuery }) => {
   };
 
   return (
-    <div className="flex flex-row justify-center my-5 text-white">
+    <div className="flex flex-row justify-center my-0 sm:my-5 text-white">
       {cities.map((city) => (
         <button
           key={city.id}

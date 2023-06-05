@@ -1,4 +1,23 @@
 # caseys-weatherman
+V2.0.1 05-06-2023
+
+HUGE UPDATES!
+
+- Migrated from Create React App that is no longer supported to using VITE JS : https://vitejs.dev/
+
+- Made the app more mobile friendly 
+
+*****************
+
+- Note, some functionality is limited due to the free version of the OpenWeather API, and also makes it difficult to pass information around the react components - hence some code looking long winded 
+
+For example, I cannot get daily forecasts with V2.5 OpenWeather API's free weather call, nor can I input Lat/Lon inputs on current weather calls, meaning that I cannot get the users current location, for example
+
+If V3 is released it will include this functionality as well as having a drop down menu to suggest locations whilst you are typing an input - and being able to click & use the suggested area. 
+
+This allows the user for example to be able to specify locations that have the same name - i.e Manchester in Tennessee, USA vs the default which is Manchester in the UK
+
+Note - this will be if I decide to upgrade my subscription to a paid version or OpenWeather adds more functionality on their free API!
 
 V2.0 31-5-2023!
 
@@ -27,17 +46,6 @@ Updates:
 - An error message on the top of the screen to indicate any errors with the user's input, or if the API response has failed
 
 
-*****************
-
-- Note, some functionality is limited due to the free version of the OpenWeather API, and also makes it difficult to pass information around the react components - hence some code looking long winded 
-
-For example, I cannot get daily forecasts with V2.5 OpenWeather API's free weather call, nor can I input Lat/Lon inputs on current weather calls, meaning that I cannot get the users current location, for example
-
-If V3 is released it will include this functionality as well as having a drop down menu to suggest locations whilst you are typing an input - and being able to click & use the suggested area. 
-
-This allows the user for example to be able to specify locations that have the same name - i.e Manchester in Tennessee, USA vs the default which is Manchester in the UK
-
-Note - this will be if I decide to upgrade my subscription to a paid version or OpenWeather adds more functionality on their free API!
 
 **********************
 

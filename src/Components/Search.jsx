@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { UilSearch, UilLocationPoint } from "@iconscout/react-unicons";
 
 const Search = ({ setQuery, units, setUnits, loading }) => {
@@ -53,31 +53,40 @@ const Search = ({ setQuery, units, setUnits, loading }) => {
   */
 
   return (
-    <div className="flex flex-row justify-center items-center my-6 mx-1 sm:flex-row sm:justify-center sm:items-center">
-      <div className="flex flex-row items-center">
+    <div className="flex flex-col justify-center items-center my-2 sm:my-6 sm:flex-row sm:justify-center sm:items-center">
+     
         <input
           value={city}
           type="text"
           placeholder="Search for a city..."
-          className="text-md sm:text-xl font-light p-2 w-full shadow-xl focus:outline-none capitalize placeholder:lowercase"
+          className="text-xs sm:text-xl font-light p-2 w-full md:w-1/2 shadow-xl focus:outline-none capitalize placeholder:lowercase mb-2 sm:mb-0 sm:mr-2"
           onChange={handleCityChange}
           onKeyDown={handleInputKeyDown}
         />
-      </div>
-      <UilSearch
-        size={25}
-        className="text-white cursor-pointer m-1 transition ease-out hover:scale-125"
-        onClick={handleSearchClick}
-      />
-      <UilLocationPoint
-        size={25}
-        className="text-white cursor-pointer m-1 transition ease-out hover:scale-125"
-        //onClick={handleLocationClick}
-      />
-      <div className="flex flex-row w-1/4 items-center justify-center text-white text-md sm:text-xl font-light ">
+
+         <div className="flex flex-col md:flex-row items-center justify-around">
+        <div className="flex flex-row justify-center">
+          <div className="mx-1 sm:mx-1">
+            <UilSearch
+              size={25}
+              className="text-white cursor-pointer transition ease-out hover:scale-125 w-4 sm:w-auto"
+              onClick={handleSearchClick}
+            />
+          </div>
+          <div className="mx-1 sm:mx-1">
+            <UilLocationPoint
+              size={25}
+              className="text-white cursor-pointer transition ease-out hover:scale-125 w-4 sm:w-auto"
+              //onClick={handleLocationClick}
+            />
+          </div>
+        </div>
+      
+  
+      <div className="flex flex-row w-1/4 items-center justify-center text-white text-sm sm:text-xl font-light">
         <button
           name="metric"
-          className={` mx-1 ${units === "imperial" ? "text-gray-400" : ""}`}
+          className={`mx-0 sm:mx-1 ${units === "imperial" ? "text-gray-400" : ""}`}
           onClick={handleUnitsChange}
         >
           °C
@@ -85,14 +94,15 @@ const Search = ({ setQuery, units, setUnits, loading }) => {
         <p className="mx-1">|</p>
         <button
           name="imperial"
-          className={`mx-1 ${units === "metric" ? "text-gray-400" : ""}`}
+          className={`mx-0 sm:mx-1 ${units === "metric" ? "text-gray-400" : ""}`}
           onClick={handleUnitsChange}
         >
-          °F
+        °F
         </button>
+        </div>
       </div>
     </div>
   );
-};
-
-export default Search;
+}
+  export default Search;
+  

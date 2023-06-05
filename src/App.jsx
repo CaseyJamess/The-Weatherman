@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import GlobalCities from "./Components/GlobalCities";
 import Search from "./Components/Search";
 import TimeLocation from "./Components/TimeLocation";
 import Temperature from "./Components/Temperature";
 import Forecast from "./Components/Forecast";
-import getWeatherData from "./Weather.js";
-import { isNightTime } from "./Utility.js";
+import getWeatherData from "./Weather.jsx";
+import { isNightTime } from "./Utility.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -78,7 +78,7 @@ function App() {
   return (
     <div className=" flex justify-center">
       <div
-        className={`max-w-screen-md w-full my-10 px-24 py-5 bg-gradient-to-br sm:bg-gradient-to-br md:bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${backgroundClass}`}
+        className={`max-w-screen-md w-full my-0 sm:my-20 px-24 py-5 bg-gradient-to-br sm:bg-gradient-to-br md:bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${backgroundClass}`}
       >
         <GlobalCities setQuery={setQuery} />
         <Search
@@ -109,7 +109,7 @@ function App() {
         )}
       </div>
 
-      <ToastContainer autoClose={2000} theme="colored" newestOnTop={true} />
+      <ToastContainer autoClose={1000} theme="colored" newestOnTop={true} />
 
       {errorMessage && (
         <div className="fixed top-0 left-0 right-0 bg-red-500 p-2 text-white text-sm text-center">

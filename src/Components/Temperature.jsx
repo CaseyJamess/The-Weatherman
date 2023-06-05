@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {
   UilArrowUp,
   UilArrowDown,
@@ -9,7 +9,7 @@ import {
   UilSunset,
 } from '@iconscout/react-unicons';
 
-import {formatTemperature} from '../Utility.js';
+import {formatTemperature} from '../Utility.jsx';
 
 const Temperature = ({formattedData, units, sunrise, sunset}) => {
 
@@ -42,7 +42,7 @@ return (
       <p>{description}</p>
     </div>
 
-    <div className='flex flex-col sm:flex-row items-center justify-between text-neutral-100 py-1 mb-3'>
+    <div className='flex flex-col sm:flex-row items-center mx-auto text-center justify-between text-neutral-100 py-1 mb-1 sm:mb-3'>
       <img
         src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
         alt="Weather Image"

@@ -1,14 +1,14 @@
-import React from "react";
-import { formatSunTime } from "../Utility.js";
+
+import { formatSunTime } from "../Utility.jsx";
 
 const ForecastItem = ({ time, icon, temperature, units }) => {
   return (
-    <div className="flex flex-col items-center justify-between text-xs sm:text-lg font-light mb-10 p-1 h-16 w-24">
+    <div className="flex flex-col text-center items-center mx:auto justify-between text-xs sm:text-lg font-light mb-10 p-1 h-16 w-full sm:w-24">
       <p className="leading-normal">{time}</p>
       <img
         src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-        alt="Weather Image"
-        className="w-12"
+        alt="Weather"
+        className="w-10 sm:w-12"
       />
       <p className="leading-normal">
         {temperature} {units === "metric" ? "°C" : "°F"}
@@ -20,11 +20,11 @@ const ForecastItem = ({ time, icon, temperature, units }) => {
 const Forecast = ({ forecastData, units }) => {
   return (
     <div>
-      <div className="flex items-center align-self-start mt-6">
-        <p className="text-white font-medium uppercase">Daily Forecast</p>
+      <div className="flex items-center justify-between align-self-start mt-2 sm:mt-6">
+        <p className="text-white font-medium text-sm sm:text-lg uppercase">Daily Forecast</p>
       </div>
       <hr className="my-2" />
-      <div className="text-white flex items-center justify-between">
+      <div className="text-white flex items-center justify-center sm:justify-between">
         {forecastData.map((item) => (
           <ForecastItem
             key={item.dt}
