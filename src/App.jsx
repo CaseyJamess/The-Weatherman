@@ -76,7 +76,7 @@ function App() {
   }, [query, units]);
 
   return (
-    <div className={`my-auto mx-auto min-h-screen flex flex-col items-center bg-gradient-to-br ${backgroundClass} justify-center overflow-y-hidden`}>
+    <div className={`my-auto mx-auto max-h-screen h-screen flex flex-col items-center bg-gradient-to-br ${backgroundClass} justify-center overflow-y-hidden`}>
       <div
         className={`max-w-screen-md w-full my-0 px-5   `}
       >
