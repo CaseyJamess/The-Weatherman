@@ -29,12 +29,12 @@ const GlobalCities = ({ setQuery }) => {
   };
 
   return (
-    <div className="flex flex-row justify-center my-3 sm:my-6 items-center text-white">
+    <div className="flex flex-row justify-center items-center text-white">
       {cities.map((city) => (
         <button
           key={city.id}
           onClick={() => handleCityClick(city.name)}
-          className="whitespace-nowrap  py-2 text-base sm:text-xl lg:text-2xl cursor-pointer lg:hover:scale-110 duration-300 hover:text-sky-400 px-3"
+          className="whitespace-nowrap  p-2 text-sm sm:text-xl lg:text-2xl cursor-pointer lg:hover:scale-110 duration-300 hover:text-sky-400 "
         >
           {city.name}
         </button>

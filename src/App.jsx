@@ -76,11 +76,13 @@ function App() {
   }, [query, units]);
 
   return (
-    <div className={`flex items-center justify-center min-h-screen  bg-gradient-to-br  ${backgroundClass} `}>
+    <div className={`flex flex-col items-center lg:mx-auto  min-h-screen w-full  bg-gradient-to-br  ${backgroundClass} `}>
    
     
-       <div className="absolute top-5 left-5 right-5">
+ 
+      <div className="mt-2 lg:mt-4 mx-5 lg:mx-auto ">
         <GlobalCities setQuery={setQuery} />
+     
         <Search
           setQuery={setQuery}
           units={units}
@@ -88,6 +90,7 @@ function App() {
           setWeatherData={setWeatherData}
           loading={loading}
         />
+
 
 {weatherData && (
           <>
@@ -109,7 +112,8 @@ function App() {
             />
           </>
         )}
-      </div>
+      
+        </div>
     
       <ToastContainer autoClose={1000} theme="colored" newestOnTop={true} />
 

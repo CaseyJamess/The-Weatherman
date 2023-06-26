@@ -73,19 +73,19 @@ return (
     </div>
 
     <div className='flex flex-row items-center justify-center space-x-1 sm:space-x-3 text-xs sm:text-lg text-neutral-100 font-light '>
-  <UilSun size={30} className="mr-1 "/> 
+  <UilSun size={25} className="mr-1 "/> 
   <p>Rise: <span>{sunrise}</span></p>
   <p>|</p>
 
-  <UilSunset size={30} /> 
+  <UilSunset size={25} /> 
   <p>Sunset: <span>{sunset}</span></p>
   <p>|</p>
 
-  <UilArrowDown size={30}/> 
+  <UilArrowDown size={25}/> 
   <p>Low: <span>{temp_min}</span></p>
   <p>|</p>
 
-  <UilArrowUp size={30} /> 
+  <UilArrowUp size={25} /> 
   <p>High: <span>{temp_max}</span></p>
 </div>
 
