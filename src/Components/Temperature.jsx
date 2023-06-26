@@ -72,7 +72,7 @@ return (
       </div>
     </div>
 
-    <div className='flex flex-row items-center justify-center space-x-2 text-xs sm:text-base text-neutral-100 font-light '>
+    <div className='flex flex-row items-center justify-center space-x-1 sm:space-x-3 text-xs sm:text-lg text-neutral-100 font-light '>
   <UilSun size={30} className="mr-1 "/> 
   <p>Rise: <span>{sunrise}</span></p>
   <p>|</p>

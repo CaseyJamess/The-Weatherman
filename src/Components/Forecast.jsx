@@ -8,7 +8,7 @@ const ForecastItem = ({ time, icon, temperature, units }) => {
       <img
         src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
         alt="Weather"
-        className="w-10 sm:w-12"
+        className="w-10 sm:w-12 lg:w-16"
       />
       <p className="leading-normal">
         {temperature} {units === "metric" ? "°C" : "°F"}
