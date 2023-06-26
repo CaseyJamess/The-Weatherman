@@ -76,9 +76,9 @@ function App() {
   }, [query, units]);
 
   return (
-    <div className=" flex justify-center">
+    <div className={`my-auto mx-auto min-h-screen flex flex-col items-center bg-gradient-to-br ${backgroundClass} justify-center overflow-y-hidden`}>
       <div
-        className={`max-w-screen-md w-full my-0 sm:my-20 px-24 py-5 bg-gradient-to-br sm:bg-gradient-to-br md:bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${backgroundClass}`}
+        className={`max-w-screen-md w-full my-0 px-5   `}
       >
         <GlobalCities setQuery={setQuery} />
         <Search

@@ -20,7 +20,7 @@ const ForecastItem = ({ time, icon, temperature, units }) => {
 const Forecast = ({ forecastData, units }) => {
   return (
     <div>
-      <div className="flex items-center justify-between align-self-start mt-2 sm:mt-6">
+      <div className="flex items-center justify-between align-self-start mt-2 p-2 sm:mt-6">
         <p className="text-white font-medium text-sm sm:text-lg uppercase">Daily Forecast</p>
       </div>
       <hr className="my-2" />

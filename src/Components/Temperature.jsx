@@ -37,55 +37,55 @@ const wind = units === 'metric' ? `${formattedData.speed.toFixed(1)} m/s` : `${f
 
 
 return (
-  <div>
-    <div className='flex flex-col sm:flex-row items-center justify-center my-1 text-xl sm:text-3xl sm:my-2 text-neutral-100'>
+  <div >
+    <div className='flex flex-col sm:flex-row items-center justify-center text-center my-0 mt-2 text-xl sm:text-4xl sm:my-2 text-neutral-100'>
       <p>{description}</p>
     </div>
 
-    <div className='flex flex-col sm:flex-row items-center mx-auto text-center justify-between text-neutral-100 py-1 mb-1 sm:mb-3'>
+    <div className='flex flex-col sm:flex-row items-center mx-auto text-center justify-between text-neutral-100 py-1  sm:mb-3'>
       <img
         src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
         alt="Weather Image"
         
       />
 
-      <p className='text-3xl mb-1 sm:text-4xl flex-shrink-0'>{temp}</p>
+      <p className='text-2xl mb-1 sm:text-4xl flex-shrink-0'>{temp}</p>
 
       <div className='flex flex-col font-light text-xs sm:text-lg space-y-2 my-3'>
         <div className='flex  items-center justify-center'>
-          <UilTemperature size={18} className="mr-1"/>
+          <UilTemperature size={20} className="mr-1"/>
           <span>Feels like:</span>
           <span className='font-medium ml-1'>{feelsLike}</span>
         </div>
 
         <div className='flex items-center justify-center'>
-          <UilTear size={18} className="mr-1"/>
+          <UilTear size={20} className="mr-1"/>
           <span>Humidity:</span>
           <span className='font-medium ml-1'>{humidity}</span>
         </div>
 
         <div className='flex items-center justify-center'>
-          <UilWind size={18} className="mr-1"/>
+          <UilWind size={20} className="mr-1"/>
           <span>Wind:</span>
           <span className='font-medium ml-1'>{wind}</span>
         </div>
       </div>
     </div>
 
-    <div className='flex flex-row items-center justify-center space-x-2  text-neutral-100 font-light text-xs sm:text-base'>
-  <UilSun size={18} className="mr-1"/> 
+    <div className='flex flex-row items-center justify-center space-x-2 text-xs sm:text-base text-neutral-100 font-light '>
+  <UilSun size={30} className="mr-1 "/> 
   <p>Rise: <span>{sunrise}</span></p>
   <p>|</p>
 
-  <UilSunset size={18} className="mr-1"/> 
+  <UilSunset size={30} /> 
   <p>Sunset: <span>{sunset}</span></p>
   <p>|</p>
 
-  <UilArrowDown size={18} className="mr-1"/> 
+  <UilArrowDown size={30}/> 
   <p>Low: <span>{temp_min}</span></p>
   <p>|</p>
 
-  <UilArrowUp size={18} className="mr-1"/> 
+  <UilArrowUp size={30} /> 
   <p>High: <span>{temp_max}</span></p>
 </div>
 

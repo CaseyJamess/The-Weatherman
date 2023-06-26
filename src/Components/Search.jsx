@@ -59,7 +59,7 @@ const Search = ({ setQuery, units, setUnits, loading }) => {
           value={city}
           type="text"
           placeholder="Search for a city..."
-          className="text-xs sm:text-xl font-light p-2 w-full md:w-1/2 shadow-xl focus:outline-none capitalize placeholder:lowercase mb-2 sm:mb-0 sm:mr-2"
+          className="text-xs sm:text-xl font-light p-2 w-1/2 shadow-xl focus:outline-none capitalize placeholder:lowercase mb-2 sm:mb-0 sm:mr-2"
           onChange={handleCityChange}
           onKeyDown={handleInputKeyDown}
         />
